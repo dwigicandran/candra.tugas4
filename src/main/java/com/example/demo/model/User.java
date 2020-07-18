@@ -3,11 +3,14 @@ package com.example.demo.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,11 +19,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy  = GenerationType.IDENTITY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private int id;
     private String username, password, name, email;
     @ElementCollection
     private List<String> role = new ArrayList<>();
     private boolean active;
+
 
 
     public User() {
@@ -131,8 +136,7 @@ public class User {
         return this;
     }
 
-   
-
+    
 
     @Override
     public String toString() {
@@ -146,7 +150,6 @@ public class User {
             ", active='" + isActive() + "'" +
             "}";
     }
-
 
 
 
