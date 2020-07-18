@@ -1,34 +1,38 @@
 package com.example.demo.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "address")
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     private String address,country,province;
-    @OneToOne
-	    @MapsId
-        private User user;
-    
+    @OneToOne(cascade = CascadeType.ALL)
+	    @JoinColumn(name = "user_id", referencedColumnName = "id")
+	    private User user;
+
+
 
     public Address() {
     }
 
-    public Address(int id, String address, String country, String province, User user) {
+    public Address(int id, String address, String country, String province) {
         this.id = id;
         this.address = address;
         this.country = country;
         this.province = province;
-        this.user = user;
     }
 
     public int getId() {
@@ -63,14 +67,6 @@ public class Address {
         this.province = province;
     }
 
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public Address id(int id) {
         this.id = id;
         return this;
@@ -91,13 +87,6 @@ public class Address {
         return this;
     }
 
-    public Address user(User user) {
-        this.user = user;
-        return this;
-    }
-
-   
-
     @Override
     public String toString() {
         return "{" +
@@ -105,10 +94,8 @@ public class Address {
             ", address='" + getAddress() + "'" +
             ", country='" + getCountry() + "'" +
             ", province='" + getProvince() + "'" +
-            ", user='" + getUser() + "'" +
             "}";
     }
     
-    
-    
+
 }
