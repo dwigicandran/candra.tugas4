@@ -1,11 +1,6 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,30 +9,28 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "User")
 public class User {
-
     @Id
-    @GeneratedValue(strategy  = GenerationType.IDENTITY)
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
-    private String username, password, name, email;
-    @ElementCollection
-    private List<String> role = new ArrayList<>();
-    private boolean active;
-
+    private String usename,password,name,role,email;
+    private Boolean active;
+    @OneToOne(mappedBy = "user")
+	    private Address address;
 
 
     public User() {
     }
 
-    public User(int id, String username, String password, String name, String email, List<String> role, boolean active) {
+    public User(int id, String usename, String password, String name, String role, String email, Boolean active) {
         this.id = id;
-        this.username = username;
+        this.usename = usename;
         this.password = password;
         this.name = name;
-        this.email = email;
         this.role = role;
+        this.email = email;
         this.active = active;
     }
 
@@ -49,12 +42,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return this.username;
+    public String getUsename() {
+        return this.usename;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsename(String usename) {
+        this.usename = usename;
     }
 
     public String getPassword() {
@@ -73,6 +66,14 @@ public class User {
         this.name = name;
     }
 
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getEmail() {
         return this.email;
     }
@@ -81,23 +82,15 @@ public class User {
         this.email = email;
     }
 
-    public List<String> getRole() {
-        return this.role;
-    }
-
-    public void setRole(List<String> role) {
-        this.role = role;
-    }
-
-    public boolean isActive() {
+    public Boolean isActive() {
         return this.active;
     }
 
-    public boolean getActive() {
+    public Boolean getActive() {
         return this.active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
@@ -106,8 +99,8 @@ public class User {
         return this;
     }
 
-    public User username(String username) {
-        this.username = username;
+    public User usename(String usename) {
+        this.usename = usename;
         return this;
     }
 
@@ -121,36 +114,34 @@ public class User {
         return this;
     }
 
+    public User role(String role) {
+        this.role = role;
+        return this;
+    }
+
     public User email(String email) {
         this.email = email;
         return this;
     }
 
-    public User role(List<String> role) {
-        this.role = role;
-        return this;
-    }
-
-    public User active(boolean active) {
+    public User active(Boolean active) {
         this.active = active;
         return this;
     }
 
-    
 
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
+            ", usename='" + getUsename() + "'" +
             ", password='" + getPassword() + "'" +
             ", name='" + getName() + "'" +
-            ", email='" + getEmail() + "'" +
             ", role='" + getRole() + "'" +
+            ", email='" + getEmail() + "'" +
             ", active='" + isActive() + "'" +
             "}";
     }
-
 
 
     
