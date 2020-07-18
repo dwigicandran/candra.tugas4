@@ -24,7 +24,7 @@ public class User {
     public User() {
     }
 
-    public User(int id, String usename, String password, String name, String role, String email, Boolean active) {
+    public User(int id, String usename, String password, String name, String role, String email, Boolean active, Address address) {
         this.id = id;
         this.usename = usename;
         this.password = password;
@@ -32,6 +32,7 @@ public class User {
         this.role = role;
         this.email = email;
         this.active = active;
+        this.address = address;
     }
 
     public int getId() {
@@ -94,6 +95,14 @@ public class User {
         this.active = active;
     }
 
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public User id(int id) {
         this.id = id;
         return this;
@@ -129,6 +138,12 @@ public class User {
         return this;
     }
 
+    public User address(Address address) {
+        this.address = address;
+        return this;
+    }
+
+
 
     @Override
     public String toString() {
@@ -140,6 +155,7 @@ public class User {
             ", role='" + getRole() + "'" +
             ", email='" + getEmail() + "'" +
             ", active='" + isActive() + "'" +
+            ", address='" + getAddress() + "'" +
             "}";
     }
 
