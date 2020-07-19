@@ -1,14 +1,6 @@
 package com.example.demo.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,26 +12,29 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    private String address,country,province;
-    @OneToOne(cascade = CascadeType.ALL)
-        @JoinColumn(name = "user_id", referencedColumnName = "id")
-        @JsonIgnore
+    private String address,country,province,city;
+    private int postalcode;
+    @OneToOne(fetch = FetchType.LAZY,optional = false)
+     @MapsId
+    @JsonIgnore
 	    private User user;
 
 
     public Address() {
     }
 
-    public Address(int id, String address, String country, String province, User user) {
+    public Address(int id, String address, String country, String province, String city, int postalcode, User user) {
         this.id = id;
         this.address = address;
         this.country = country;
         this.province = province;
+        this.city = city;
+        this.postalcode = postalcode;
         this.user = user;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
@@ -47,7 +42,7 @@ public class Address {
     }
 
     public String getAddress() {
-        return this.address;
+        return address;
     }
 
     public void setAddress(String address) {
@@ -55,7 +50,7 @@ public class Address {
     }
 
     public String getCountry() {
-        return this.country;
+        return country;
     }
 
     public void setCountry(String country) {
@@ -63,58 +58,34 @@ public class Address {
     }
 
     public String getProvince() {
-        return this.province;
+        return province;
     }
 
     public void setProvince(String province) {
         this.province = province;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getPostalcode() {
+        return postalcode;
+    }
+
+    public void setPostalcode(int postalcode) {
+        this.postalcode = postalcode;
+    }
+
     public User getUser() {
-        return this.user;
+        return user;
     }
 
     public void setUser(User user) {
         this.user = user;
     }
-
-    public Address id(int id) {
-        this.id = id;
-        return this;
-    }
-
-    public Address address(String address) {
-        this.address = address;
-        return this;
-    }
-
-    public Address country(String country) {
-        this.country = country;
-        return this;
-    }
-
-    public Address province(String province) {
-        this.province = province;
-        return this;
-    }
-
-    public Address user(User user) {
-        this.user = user;
-        return this;
-    }
-
-   
-
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", address='" + getAddress() + "'" +
-            ", country='" + getCountry() + "'" +
-            ", province='" + getProvince() + "'" +
-            ", user='" + getUser() + "'" +
-            "}";
-    }
-   
-
 }
