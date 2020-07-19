@@ -11,7 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    private String usename,name,role,email;
+    private String username,name,role,email;
     @JsonIgnore
     private String password;
     private Boolean active;
@@ -22,43 +22,35 @@ public class User {
     public User() {
     }
 
-    public User(int id, String usename, String password, String name, String role, String email, Boolean active, Address address) {
+    public User(int id, String username, String name, String role, String email, String password, Boolean active, Address address) {
         this.id = id;
-        this.usename = usename;
-        this.password = password;
+        this.username = username;
         this.name = name;
         this.role = role;
         this.email = email;
+        this.password = password;
         this.active = active;
         this.address = address;
     }
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getUsename() {
-        return this.usename;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsename(String usename) {
-        this.usename = usename;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -66,7 +58,7 @@ public class User {
     }
 
     public String getRole() {
-        return this.role;
+        return role;
     }
 
     public void setRole(String role) {
@@ -74,19 +66,23 @@ public class User {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public Boolean isActive() {
-        return this.active;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Boolean getActive() {
-        return this.active;
+        return active;
     }
 
     public void setActive(Boolean active) {
@@ -94,65 +90,23 @@ public class User {
     }
 
     public Address getAddress() {
-        return this.address;
+        return address;
     }
 
     public void setAddress(Address address) {
         this.address = address;
     }
 
-    public User id(int id) {
-        this.id = id;
-        return this;
-    }
-
-    public User usename(String usename) {
-        this.usename = usename;
-        return this;
-    }
-
-    public User password(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public User name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public User role(String role) {
-        this.role = role;
-        return this;
-    }
-
-    public User email(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public User active(Boolean active) {
-        this.active = active;
-        return this;
-    }
-
-    public User address(Address address) {
-        this.address = address;
-        return this;
-    }
-
-
-
     @Override
     public String toString() {
         return "{" +
             " id='" + getId() + "'" +
-            ", usename='" + getUsename() + "'" +
+            ", usename='" + getUsername() + "'" +
             ", password='" + getPassword() + "'" +
             ", name='" + getName() + "'" +
             ", role='" + getRole() + "'" +
             ", email='" + getEmail() + "'" +
-            ", active='" + isActive() + "'" +
+            ", active='" + getActive() + "'" +
             ", address='" + getAddress() + "'" +
             "}";
     }

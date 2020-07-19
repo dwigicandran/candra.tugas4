@@ -12,10 +12,10 @@ import java.util.List;
 public interface UserRepository extends JpaRepository <User, String> {
 
 	User findById(int id);
-//	Page<User> findByUsernameContaining(String search, Pageable pageable);
-//	List<User> findByAddress_CityContaining(String search);
-//	List<User> findByAddress_ProvinceContaining(String search);
-//	List<User> findByAddress_CountryContaining(String search);
+	Page<User> findByUsernameContaining(String search,Pageable pageable);
+	List<User> findByAddress_CityContaining(String search);
+	List<User> findByAddress_ProvinceContaining(String search);
+	List<User> findByAddress_CountryContaining(String search);
 
 
 }
