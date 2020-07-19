@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "User")
 public class User {
@@ -15,7 +17,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    private String usename,password,name,role,email;
+    private String usename,name,role,email;
+    @JsonIgnore
+    private String password;
     private Boolean active;
     @OneToOne(mappedBy = "user")
 	    private Address address;

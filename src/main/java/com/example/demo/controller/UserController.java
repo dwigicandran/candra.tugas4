@@ -4,8 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+import com.example.demo.model.Address;
 import com.example.demo.model.User;
+import com.example.demo.repository.AddressRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
@@ -26,6 +27,8 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    AddressRepository addressRepository;
+    @Autowired
     UserService userService;
 
 
@@ -33,12 +36,31 @@ public class UserController {
     List<User> getAllUsers(){
         return userRepository.findAll();
     }
-
+    
     @PostMapping("")
-    User insertUser(@RequestBody User dataUser){
-        User result = userRepository.save(dataUser);
+    public Map<String, Object> addNewUser(@RequestBody User dataUser) {
+        
+        Map<String, Object> result = new HashMap<>();
+
+        if (userService.saveUser(dataUser)) {
+            result.put("succes", true);
+            result.put("message", "berhasil");
+        } else {
+            result.put("succes", false);
+            result.put("message", "gagal");
+        }
         return result;
+        
+        
+
     }
+    // User insertUser(@RequestBody User dataUser){
+        // User result = userService.saveUser(dataUser);
+        // return result;
+    // }
+
+    
+    
 
     @DeleteMapping("")
     Map<String,Object>deleteUser(@RequestParam int id){

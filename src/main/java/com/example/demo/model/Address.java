@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "address")
 public class Address {
@@ -20,19 +22,20 @@ public class Address {
     private int id;
     private String address,country,province;
     @OneToOne(cascade = CascadeType.ALL)
-	    @JoinColumn(name = "user_id", referencedColumnName = "id")
+        @JoinColumn(name = "user_id", referencedColumnName = "id")
+        @JsonIgnore
 	    private User user;
-
 
 
     public Address() {
     }
 
-    public Address(int id, String address, String country, String province) {
+    public Address(int id, String address, String country, String province, User user) {
         this.id = id;
         this.address = address;
         this.country = country;
         this.province = province;
+        this.user = user;
     }
 
     public int getId() {
@@ -67,6 +70,14 @@ public class Address {
         this.province = province;
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Address id(int id) {
         this.id = id;
         return this;
@@ -87,6 +98,13 @@ public class Address {
         return this;
     }
 
+    public Address user(User user) {
+        this.user = user;
+        return this;
+    }
+
+   
+
     @Override
     public String toString() {
         return "{" +
@@ -94,8 +112,9 @@ public class Address {
             ", address='" + getAddress() + "'" +
             ", country='" + getCountry() + "'" +
             ", province='" + getProvince() + "'" +
+            ", user='" + getUser() + "'" +
             "}";
     }
-    
+   
 
 }
