@@ -61,8 +61,8 @@ public class AddressService {
         }
     }
 
-    public Map<String, Object> getAddressById(int userId) {
-        Address result = addressRepository.findById(userId);
+    public Map<String, Object> getAddressById(int id) {
+        Address result = addressRepository.findById(id);
         Map<String, Object> resultMap = new HashMap<>();
         if (result != null) {
             resultMap.put("success", true);
@@ -86,7 +86,6 @@ public class AddressService {
                 return null;
         }
     }
-
 
 
 

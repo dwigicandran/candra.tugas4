@@ -72,8 +72,8 @@ public class AddressController {
     }
 
     @GetMapping("/byId")
-    Map<String,Object> getAddressById(@RequestParam int userId){
-        return addressService.getAddressById(userId);
+    Map<String,Object> getAddressById(@RequestParam int id){
+        return addressService.getAddressById(id);
     }
 
     @GetMapping("/byType")
@@ -81,6 +81,9 @@ public class AddressController {
             @RequestParam(required = false)String search,
             @RequestParam(required = false)String type )
     { return addressService.getAllAddressByType(search,type); }
+
+
+
 
 
 
