@@ -4,6 +4,7 @@ import com.example.demo.model.BookCategory;
 import com.example.demo.repository.BookCategoryRepository;
 import com.example.demo.service.BookCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -61,6 +62,12 @@ public class BookCategoryController {
         } return result;
     }
 
+    @GetMapping("/page")
+    public ResponseEntity<Map<String ,Object>> getAllBookCat(
+            @RequestParam(required = false) String search,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size )
+    { return bookCatService.getAllBookCategoryPage(search,page,size); }
 
 
 
