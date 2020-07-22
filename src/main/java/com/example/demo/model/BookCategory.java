@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class BookCategory {
     private int id;
     private String name;
 
+
     public BookCategory(int id, String name) {
         this.id = id;
         this.name = name;
@@ -21,6 +24,8 @@ public class BookCategory {
 
     public BookCategory() {
     }
+
+
 
     public int getId() {
         return id;
@@ -37,6 +42,4 @@ public class BookCategory {
     public void setName(String name) {
         this.name = name;
     }
-
-
 }

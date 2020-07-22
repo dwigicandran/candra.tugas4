@@ -14,10 +14,10 @@ public class Book {
     private int id;
     private int price,year;
     private String title,publisher,writer;
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    @JoinColumn(name = "categoryid",nullable = false)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
     private BookCategory bookCategory;
+
 
 
     public Book() {
