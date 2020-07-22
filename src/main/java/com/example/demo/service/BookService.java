@@ -99,7 +99,7 @@ public class BookService {
         return bookRepository.findByTitleContaining(title);
     }
 
-//    public List<Book> getAllBookByCategory(int id) {
-//        return bookRepository.findBycategoryidContaining(id);
-//    }
+    public List<Book> getAllBookByCategory(int id) {
+        return bookRepository.findBycategoryidContaining(id);
+    }
 }

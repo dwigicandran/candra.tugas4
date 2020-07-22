@@ -75,9 +75,9 @@ public class BookController {
     public List<Book> getUsersByTitle(@RequestParam(required = false)String title)
     { return bookService.getAllBookByTitle(title); }
 
-//    @GetMapping("/byCategory")
-//    public List<Book> getUsersByCategory(@RequestParam(required = false)int id )
-//    { return bookService.getAllBookByCategory(id); }
+    @GetMapping("/byCategory")
+    public List<Book> getUsersByCategory(@RequestParam(required = false)int id )
+    { return bookService.getAllBookByCategory(id); }
 
 
 
