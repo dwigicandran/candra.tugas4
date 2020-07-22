@@ -37,7 +37,7 @@ public class UserController {
     { return userService.getAllUsername(search,page,size); }
 
     //get by address type
-    @GetMapping("/ByAddress")
+    @GetMapping("/byAddress")
     public List<User>getUsersByAddress(
         @RequestParam(required = false)String search,
         @RequestParam(required = false)String type )

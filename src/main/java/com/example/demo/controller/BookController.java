@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Book;
-import com.example.demo.model.User;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -63,6 +63,21 @@ public class BookController {
         }
         return result;
     }
+
+    @GetMapping("/page")
+    public ResponseEntity<Map<String ,Object>> getAllBooks(
+            @RequestParam(required = false) String search,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size )
+    { return bookService.getAllTitle(search,page,size); }
+
+    @GetMapping("/byTitle")
+    public List<Book> getUsersByTitle(@RequestParam(required = false)String title)
+    { return bookService.getAllBookByTitle(title); }
+
+//    @GetMapping("/byCategory")
+//    public List<Book> getUsersByCategory(@RequestParam(required = false)int id )
+//    { return bookService.getAllBookByCategory(id); }
 
 
 
